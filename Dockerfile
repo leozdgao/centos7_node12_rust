@@ -24,15 +24,15 @@ RUN scl enable devtoolset-8 -- bash && \
 
 
 # 安装 GIT
-# RUN yum install -y git
+RUN yum install -y git
 
 # 安装 Node 和 NPM
-# RUN (curl -sL https://rpm.nodesource.com/setup_12.x | bash -) && yum install -y nodejs
+RUN (curl -sL https://rpm.nodesource.com/setup_12.x | bash -) && yum install -y nodejs
 
 # 安装 Rust
-# RUN curl https://sh.rustup.rs -sSf > /tmp/rustup.sh
-# RUN sh /tmp/rustup.sh -y
-# RUN source $HOME/.cargo/env
+RUN curl https://sh.rustup.rs -sSf > /tmp/rustup.sh
+RUN sh /tmp/rustup.sh -y
+RUN source $HOME/.cargo/env
 
 # WORKDIR $HOME
 # RUN git clone --depth 1 --branch $RUST_SKIA_TAG https://github.com/rust-skia/rust-skia.git .$HOME/rust-skia
