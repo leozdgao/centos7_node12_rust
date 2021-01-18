@@ -1,10 +1,5 @@
 FROM centos:7
 
-ENV RUST_SKIA_TAG="0.33.0" 
-# CMD [ "clang", "--version" ]
-# ENV CXX="clang-6.0"
-# ENV CPLUS_INCLUDE_PATH="/usr/include/clang/6.0.1/include"
-
 RUN yum install -y gcc-c++
 # RUN yum install -y epel-release
 # RUN yum install -y centos-release-scl
@@ -13,12 +8,12 @@ RUN yum install -y openssl openssl-devel
 RUN yum install -y fontconfig-devel
 
 COPY CMake-3.4.3.tar.gz CMake-3.4.3.tar.gz
-RUN tar -zxvf CMake-3.4.3.tar.gz cmake-3.4.3
+RUN tar -zxvf CMake-3.4.3.tar.gz
 
 COPY llvm-project-release-6.x llvm-6.x
 
-RUN cd cmake-3.4.3 && ./bootstrap && make && make install && \
-    cd ../llvm-6.x && mkdir build && cd build && cmake -DLLVM_ENABLE_PROJECTS=clang -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" ../llvm && \
+RUN cd CMake-3.4.3 && ./bootstrap && make && make install && \
+    cd ../llvm-6.x && mkdir build && cd build && cmake -DLLVM_ENABLE_PROJECTS=clang -D_GLIBCXX_USE_CXX11_ABI=0 -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" ../llvm && \
     cmake --build . && cmake --build . --target install
 
 # 安装 GIT
