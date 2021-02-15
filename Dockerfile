@@ -24,4 +24,4 @@ RUN curl https://sh.rustup.rs -sSf > /tmp/rustup.sh
 RUN sh /tmp/rustup.sh -y
 
 # 安装 Node 和 NPM
-RUN (curl -sL https://rpm.nodesource.com/setup_14.x | bash -) && yum install -y nodejs-14.0.0
+RUN (curl -sL https://rpm.nodesource.com/setup_12.x | bash -) && yum install -y nodejs
